@@ -52,7 +52,7 @@ public class Main {
     staticFileLocation("/public");
 
     Gson gson = new Gson();
-    get("/hello", "application/json", (req, res) -> {
+    get("/hello", (req, res) -> {
     	res.header("Content-Type", "application/json");
     	return new MyMessage("a", "b");
     }, gson::toJson);
