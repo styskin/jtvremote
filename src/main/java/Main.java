@@ -14,6 +14,36 @@ import static spark.Spark.get;
 import com.heroku.sdk.jdbc.DatabaseUrl;
 import com.google.gson.Gson;
 
+
+class MyMessage {
+	
+	private String someP;
+	private String anotherP;
+	
+	public MyMessage() {
+	}
+	
+	public MyMessage(String someP, String anotherP) {
+		this.someP = someP;
+		this.anotherP = anotherP;
+	}
+	
+	public String getSomeP() {
+		return someP;
+	}
+	public void setSomeP(String someP) {
+		this.someP = someP;
+	}
+	public String getAnotherP() {
+		return anotherP;
+	}
+	public void setAnotherP(String anotherP) {
+		this.anotherP = anotherP;
+	}
+	
+}
+
+
 public class Main {
 
   public static void main(String[] args) {
@@ -22,7 +52,7 @@ public class Main {
     staticFileLocation("/public");
 
     Gson gson = new Gson();
-    get("/hello", (req, res) -> "{a:b}", gson::toJson);
+    get("/hello", (req, res) -> new MyMessage("a", "b"), gson::toJson);
 
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
