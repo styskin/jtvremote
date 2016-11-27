@@ -53,7 +53,7 @@ public class Main {
 
     Gson gson = new Gson();
     get("/hello", (req, res) -> {
-    	res.header("Content-Type", "application/json");
+    	res.type("application/json");
     	return new MyMessage("a", "b");
     }, gson::toJson);
 
