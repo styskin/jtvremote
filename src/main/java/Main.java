@@ -52,7 +52,10 @@ public class Main {
     staticFileLocation("/public");
 
     Gson gson = new Gson();
-    get("/hello", (req, res) -> new MyMessage("a", "b"), gson::toJson);
+    get("/hello", "application/json", (req, res) -> {
+    	res.header("Content-Type", "application/json");
+    	return new MyMessage("a", "b");
+    }, gson::toJson);
 
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
