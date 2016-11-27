@@ -12,6 +12,7 @@ import spark.ModelAndView;
 import static spark.Spark.get;
 
 import com.heroku.sdk.jdbc.DatabaseUrl;
+import com.google.gson.Gson;
 
 public class Main {
 
@@ -20,7 +21,8 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
-    get("/hello", (req, res) -> "Hello World");
+    Gson gson = new Gson();
+    get("/hello", (req, res) -> "{a:b}", gson::toJson);
 
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
