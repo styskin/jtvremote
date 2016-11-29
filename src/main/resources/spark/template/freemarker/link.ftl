@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"/>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type='text/javascript'>
             setInterval(function () {
                 $.ajax({
