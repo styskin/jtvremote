@@ -69,6 +69,7 @@ public class Main {
                 if (req.queryParams("device") != null) {
                     remoteId = req.queryParams("device");
                 }
+                System.out.println(req.queryParams("device"));
                 String key = "tv-" + req.queryParams("tv");
 	        if (setDb(key, remoteId)) {	
 	        	return "{done: 'ok'}";
