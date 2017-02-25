@@ -66,11 +66,10 @@ public class Main {
 	    	if (req.cookie("device") != null){
 	    		remoteId = req.cookie("device");	    		
 	    	}
-                if (req.queryParams("device") != null) {
-                    remoteId = req.queryParams("device");
-                }
-                System.out.println(req.queryParams("device"));
-                String key = "tv-" + req.queryParams("tv");
+            if (req.queryParams("device") != null) {
+                remoteId = req.queryParams("device");
+            }
+            String key = "tv-" + req.queryParams("tv");
 	        if (setDb(key, remoteId)) {	
 	        	return "{done: 'ok'}";
 	        } else {
@@ -84,9 +83,9 @@ public class Main {
 	    	if (req.cookie("device") != null){
 	    		remoteId = "remote-" + req.cookie("device");	    		
 	    	}
-                if (req.queryParams("device") != null) {
-                    remoteId = "remote-" + req.queryParams("device");
-                }
+            if (req.queryParams("device") != null) {
+            	remoteId = "remote-" + req.queryParams("device");
+            }
 	    	if (setDb(remoteId, req.body())) {
 	    		return req.body();
 	    	} else {
@@ -168,6 +167,7 @@ public class Main {
 		    	}
 		    	return new TVMessage();
 		    } catch (Exception e) {
+		    	e.printStackTrace(System.out);
 		    	return new TVMessage();
 		    } finally {
 		    	if (connection != null) try{connection.close();} catch(SQLException e){}
