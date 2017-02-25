@@ -66,7 +66,10 @@ public class Main {
 	    	if (req.cookie("device") != null){
 	    		remoteId = req.cookie("device");	    		
 	    	}
-            String key = "tv-" + req.queryParams("tv");
+                if (req.queryParams("device") != null) {
+                    remoteId = req.queryParams("device");
+                }
+                String key = "tv-" + req.queryParams("tv");
 	        if (setDb(key, remoteId)) {	
 	        	return "{done: 'ok'}";
 	        } else {
@@ -80,6 +83,9 @@ public class Main {
 	    	if (req.cookie("device") != null){
 	    		remoteId = "remote-" + req.cookie("device");	    		
 	    	}
+                if (req.queryParams("device") != null) {
+                    remoteId = "remote-" + req.queryParams("device");
+                }
 	    	if (setDb(remoteId, req.body())) {
 	    		return req.body();
 	    	} else {
@@ -156,7 +162,7 @@ public class Main {
 		    			ust.setString(1, gson.toJson(cm));
 		    			ust.setString(2, remoteId);
 		    			ust.executeUpdate();
-                        return message;
+                                        return message;
 		    		}
 		    	}
 		    	return new TVMessage();
